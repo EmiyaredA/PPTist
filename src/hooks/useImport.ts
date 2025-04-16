@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
-import { parse, type Shape, type Element, type ChartItem, type BaseElement } from 'pptxtojson'
+import { parse, type Shape, type Element, type ChartItem, type BaseElement } from 'test-pptxtojson'
 import { nanoid } from 'nanoid'
 import { useSlidesStore } from '@/store'
 import { decrypt } from '@/utils/crypto'
