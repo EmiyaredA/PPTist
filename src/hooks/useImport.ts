@@ -261,7 +261,7 @@ export default () => {
                 defaultFontName: theme.value.fontName,
                 defaultColor: theme.value.fontColor,
                 content: convertFontSizePtToPx(el.content, ratio),
-                lineHeight: 1,
+                lineHeight: el.lineHeight || 1,
                 outline: {
                   color: el.borderColor,
                   width: +(el.borderWidth * ratio).toFixed(2),
