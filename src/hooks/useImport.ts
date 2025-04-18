@@ -261,6 +261,7 @@ export default () => {
                 defaultFontName: theme.value.fontName,
                 defaultColor: theme.value.fontColor,
                 content: convertFontSizePtToPx(el.content, ratio),
+                // lineHeight: 1,
                 lineHeight: el.lineHeight || 1,
                 outline: {
                   color: el.borderColor,
@@ -301,7 +302,9 @@ export default () => {
                   style: el.borderType,
                 }
               }
+
               const clipShapeTypes = ['roundRect', 'ellipse', 'triangle', 'rhombus', 'pentagon', 'hexagon', 'heptagon', 'octagon', 'parallelogram', 'trapezoid']
+              
               if (el.rect) {
                 element.clip = {
                   shape: (el.geom && clipShapeTypes.includes(el.geom)) ? el.geom : 'rect',
@@ -324,6 +327,68 @@ export default () => {
                 }
               }
               slide.elements.push(element)
+
+              // 如果没有自定义裁剪路径，直接添加元素
+              // if (!el.customPath) {
+              //   slide.elements.push(element)
+              // } 
+              // else {
+              //   // 处理自定义形状裁剪
+              //   const processCustomClip = async () => {
+              //     // 创建一个离屏Canvas来裁剪图像
+              //     const canvas = document.createElement('canvas')
+              //     const ctx = canvas.getContext('2d')
+                  
+              //     if (ctx) {
+              //       // 设置canvas尺寸为图像尺寸
+              //       canvas.width = el.width / ratio
+              //       canvas.height = el.height / ratio
+                    
+              //       // 创建一个新的Image对象来加载原始图像
+              //       const img = new Image()
+              //       img.crossOrigin = 'anonymous' // 处理跨域图像
+              //       img.src = el.src
+                    
+              //       // 等待图像加载完成
+              //       await new Promise<void>((resolve) => {
+              //         img.onload = () => resolve()
+              //         if (img.complete) resolve()
+              //       })
+                    
+              //       // 绘制路径
+              //       ctx.beginPath()
+                    
+              //       // 使用自定义路径创建裁剪区域
+              //       const path = new Path2D(el.customPath)
+              //       ctx.clip(path)
+                    
+              //       // 绘制图像
+              //       ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+                    
+              //       // 获取裁剪后的图像数据
+              //       element.src = canvas.toDataURL()
+                    
+              //       // 移除clip属性，因为图像已经被裁剪
+              //       if (element.clip) {
+              //         delete element.clip
+              //       }
+                    
+              //       // 处理完成后添加元素
+              //       slide.elements.push(element)
+              //     } 
+              //     else {
+              //       // 如果无法获取canvas上下文，直接添加原始元素
+              //       slide.elements.push(element)
+              //     }
+              //   }
+                
+              //   // 执行裁剪处理
+              //   processCustomClip().catch(() => {
+              //     // 如果裁剪失败，添加原始元素
+              //     console.warn('图像裁剪失败，使用原始图像')
+              //     slide.elements.push(element)
+              //   })
+              // }
             }
             else if (el.type === 'math') {
               slide.elements.push({

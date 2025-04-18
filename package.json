@@ -41,6 +41,7 @@
     "prosemirror-schema-list": "^1.4.1",
     "prosemirror-state": "^1.4.3",
     "prosemirror-view": "^1.33.9",
+    "sensenote-pptxtojson": "^1.3.2",
     "svg-arc-to-cubic-bezier": "^3.2.0",
     "svg-pathdata": "^7.1.0",
     "test-pptxtojson": "^1.3.6",
