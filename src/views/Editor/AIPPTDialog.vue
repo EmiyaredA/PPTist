@@ -31,8 +31,8 @@
           v-model:value="model"
           :options="[
             { label: 'Doubao-1.5-Pro', value: 'doubao-1.5-pro-32k' },
-            { label: 'DeepSeek-v3', value: 'ark-deepseek-v3' },
-            { label: 'GLM-4-Flash', value: 'GLM-4-flash' },
+            { label: 'GLM-4-Flash', value: 'GLM-4-Flash' },
+            { label: 'GLM-4-Z1-Flash', value: 'GLM-4-Z1-Flash' },
           ]"
         />
       </div>
@@ -85,7 +85,7 @@ import OutlineEditor from '@/components/OutlineEditor.vue'
 
 const mainStore = useMainStore()
 const { templates } = storeToRefs(useSlidesStore())
-const { AIPPT } = useAIPPT()
+const { AIPPT, getMdContent } = useAIPPT()
 
 const language = ref<'zh' | 'en'>('zh')
 const keyword = ref('')
@@ -138,6 +138,7 @@ const createOutline = async () => {
   const readStream = () => {
     reader.read().then(({ done, value }) => {
       if (done) {
+        outline.value = getMdContent(outline.value)
         outlineCreating.value = false
         return
       }
